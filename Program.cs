@@ -5,31 +5,38 @@
 
 Console.Clear();
 
+int limit = 3;
 Console.Write("Введите нужное количество элементов исходного массива: ");
 int num = int.Parse(Console.ReadLine()!);
-if (num < 1){
+if (num < 1)
+{
     Console.WriteLine("Введите корректное число элементов!");
-} else {
-    
+}
+else
+{
     string[] array = new string[num];
     int finArrLen = 0;
-
-
     FillArray(array);
-    Console.Write("Исходный массив: " );
+    Console.Write("Исходный массив: ");
     PrintArray(array);
     LengthOfFinalArray(array);
-    string[] finalArray = new string[finArrLen];
-    FillFinalArray(array, finalArray);
-    /* Console.WriteLine("Длина итогового массива: " + finArrLen); */
-    Console.Write("Итоговый массив: ");
-    PrintArray(finalArray);
-
+    if (finArrLen == 0)
+    {
+        Console.Write($"В исходном массиве нет элементов длиной меньше " + limit + " символов!");
+    }
+    else
+    {
+        string[] finalArray = new string[finArrLen];
+        FillFinalArray(array, finalArray);
+        /* Console.WriteLine("Длина итогового массива: " + finArrLen); */
+        Console.Write("Итоговый массив: ");
+        PrintArray(finalArray);
+    }
 
     void FillArray(string[] array)
     {
         for (int i = 0; i < array.Length; i++)
-        {   
+        {
             Console.WriteLine("Введите данные:");
             array[i] = Console.ReadLine()!;
         }
@@ -50,31 +57,35 @@ if (num < 1){
     }
 
     void LengthOfFinalArray(string[] array)
-    {       
+    {
         for (int i = 0; i < array.Length; i++)
-        {   
-            if (array[i].Length <= 3) {
+        {
+            if (array[i].Length <= limit)
+            {
                 finArrLen++;
-            }
-        }    
-    }
-
-    void FillFinalArray(string[] arr1, string[] arr2)
-    {   
-        int i = 0;
-        int j = 0;
-        int k = 0;
-
-        while (k < arr2.Length){ 
-            if (arr1[i].Length <= 3){
-                arr2[j] = arr1[i];
-                j++;
-                i++;
-                k++;
-            } else {
-            i++;
             }
         }
     }
 
+    void FillFinalArray(string[] arr1, string[] arr2)
+    {
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while (k < arr2.Length)
+        {
+            if (arr1[i].Length <= limit)
+            {
+                arr2[j] = arr1[i];
+                j++;
+                i++;
+                k++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+    }
 }
