@@ -71,16 +71,14 @@ else
     {
         int i = 0;
         int j = 0;
-        int k = 0;
 
-        while (k < arr2.Length)
+        while (j < arr2.Length)
         {
             if (arr1[i].Length <= limit)
             {
                 arr2[j] = arr1[i];
                 j++;
                 i++;
-                k++;
             }
             else
             {
